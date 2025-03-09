@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            box-sizing: border-box; /* 设置边框和外边距，盒子不会被撑大*/
+        }
+
+        div {
+            display: inline-block; /* 把块级元素 转换 行内元素 */
+            display: block; /* 把行内元素 转换 块级元素 */
+
+            div:focus { /* 获得光标 伪类选择器   after右*/
+                width: 300px;
+            }
+
+            div:hover { /* 鼠标经过触发属性 伪类选择器 */
+                background-color: gainsboro; /* 将鼠标悬停在某个元素上时触发背景颜色 */
+                color: gold; /* 将鼠标悬停在某个元素上时触发字体颜色 */
+            }
+
+            a:link { /* 没有被访问过链接样式link，已访问，visited，hover鼠标经过，active鼠标按钮 */
+
+            }
+
+            cursor: pointer; /* 鼠标移动到这个元素的样式 pointer小手，move移动，text文本，not-allowed禁止*/
+
+            outline: 0; /* 去除input表单轮廓   none*/
+
+            title = '鼠标悬停显示' ，属性 /*  --------------------------------------   标签  ----------------------------------------*/ < strong > < / > strong > /* 字体加粗*/ < b > < / > b > < em > < / em > /* 字体倾斜*/ < i > < / i > < dle > < / dle > /* 字体删除线*/ < s > < / s > < ins > < / ins > /* 字体下划线*/ < u > < / u > < img src = '图片地址' alt = '显示文本' title = '鼠标显示文本' width = '高度' > /* 高度跟宽度只设置一个，照片就会等比例放大缩小*/ < 父路径 / 照片子路径 > < . . /父路径/ 父照片路径 > < a href = '网址' target = '_blank' > < / a > /* _self当前窗口 _blank打开新的窗口*/ < a href = '#自定义地址' > < / a > /* 定位摸个标签的位置，要给这个添加一个一样名的ID*/ < tadle > /* 表格标签      合并单元格colspan= '2', rowspan = '2'，多余的单元格删除 */ < thead > < tr > < th > 姓名 < / th > < th > 年龄 < / th > < th > 性别 < / th > < / tr > < / thead > /* 表格表头*/ < tbody > < tr > < td > 张三 < / td > < td > 18 < / td > < td > 男 < / td > < / tr > < / tbody > /* 表格主体*/ < / tadle > < ul > /* 无序列表 */ < li > < / li > < / ul > < ol > /* 无序列表 */ < li > < / li > < / ol > < dl > /* 自定义列表 */ < dt > < / dt > < dd > < / dd > < / dl > /* 扩大获得焦点 */ < input type = 'text' id = 'text' > < from > 籍贯： < select > /* 下拉框 */ < option > 广东 < / option > /* 下拉表单 */ < option > 广西 < / option > /* 下拉表单 */ < / select > < / from > inptu的属性 number 只允许输入数字 multiple 允许输入多少个值 checkbox 复选框 radio 单选框，必须给两个或多个元素一个name属性，属性名字是一样的 placeholder 提示文本 autocomplete = "off" 不记录文本 disabled 禁用 /*  --------------------------------------   文字-文本  ----------------------------------------*/
+            outline: none; /* input选中时的边框 */
+            list-style-type: none; /* li标签的原先不显示 */
+            opacity: 0; /* 文字的透明度 */
+            text-shadow: 1px 1px rgba(0, 0, 0, .2); /* 字体阴影 */
+            text-indent: 2em; /* 一段文本，首行缩进2个字符的位置 */
+            line-height: 25px; /* 父盒子设置文本的上下间距   等于盒子的高度，上下居中对齐*/
+            text-align: center; /* 在父元素设置文本显示 center(左右居中),left(左),fight(右)*/
+            font-size: 10px; /* 字体大小   0就是不显示文字*/
+            font-weight: 700; /* 字体粗细 400一下细 700粗 */
+            font-style: normal; /* 字体倾斜italic，正常 normal */
+            text-decoration: underline; /* 字体下划线underline 上划线 overline 删除线 line-through  取消线 none  */
+            vertical-align: baseline; /* 照片与文字的对其方式   middle居中 top上,bottom下 baseline 基线   块级元素没有这个属性*/
+            white-space: nowrap; /* 文字正常显示换行 normal   nowrap不换行 */
+            text-overflow: ellipsis; /* 溢出部分用省略号显示 */
+            display: none; /* 隐藏元素，block(显示)*/
+            overflow: hidden; /* 溢出隐藏元素，visible(显示),，hidden(u隐藏)，scroll(滚动条显示)，auto(内容不溢出不显示滚动条)*/
+            transform: translateY(-50%);
+
+            /*  --------------------------------------   图片-背景  ----------------------------------------*/
+
+            background: red url("https://www.baidu.com/") no-repeat fixed top; /* 可以把五个属性写一起，1颜色 2地址 3背景是否平铺是否滚动   4背景位置 */
+
+            background-repeat: no-repeat; /* 照片显示，只显示照片本身大小 no-repeat   repeat-x(y) 只向右(下)平铺*/
+
+            /* 照片在盒子显示的位置 center(居中),top(上),bottom(下)，left(左),fight(右),可以使用精确坐标像素，例如：20PC 50PC  x跟y轴有严格的顺序*/
+            background-position: top center; /* 可以写两个参数，只写一个，第二个参数默认是居中的，例如：bottom centre 是盒子地下居中，可以只写bottom效果是一样的 */
+
+            background-attachment: scroll; /* 背景图片固定(fixed)， 滚动(scroll)*/
+
+            background: rgba(0, 0, 0, .3); /* 背景或者照片的透明度最后一个值，0是完全透明，0.5是透明一半，1是完全看不见 */
+
+            transform: rotate(45deg); /* 照片旋转，负45是左旋转*/
+
+            transform-origin: left bottom; /* 已左下角为点放大  */
+            transform: scale(1, 2); /* 照片放大缩小 宽，高 大于1是放大，小于1是缩小*/
+            transition: transform 0.5s ease;
+
+            &:hover {
+                transform: translateY(-4px);
+            }
+
+            /* 背景颜色渐变效果  */
+            background: linear-gradient(to top, red, blue);
+
+            /*  --------------------------------------   盒子  ----------------------------------------*/
+
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18); /* 盒子边框阴影  */
+
+            border-radius: 50%; /* 设置盒子的角度    */
+
+            /* 使用像素,一是上下左右，二是上下，左右。三是上 左右 下，四是 上 右 下 左 ，内外边距像素是0的，解除所有标签在浏览器中默认自带的边距*/
+            padding: 5px; /* 盒子内边距，设置内容距离盒子的边距, padding-top(上),bottom(下)，left(左),fight(右)  */
+            margin: 10px; /* 盒子外边距，设置盒子之间的距离, auto(左右居中)， padding-top(上),bottom(下)，left(左),fight(右)*/
+
+            border: 5px solid red; /* 盒子边框的  粗细，样式solid(实线)，dashed(虚线), dotted(点线)  颜色，   border-top: 只设置一条边框的样式 */
+
+            text-shadow: 10px 10px 10px 10px gainsboro; /* 设置盒子的阴影 x轴 y轴 阴影度 阴影大小 颜色 */
+
+            float: left; /* 盒子本身的浮动 left(左),fight(右)*/
+
+            position: relative; /* 相对定位relative(原有位置保留)，绝对定位：absolute(原有位置不保留) ，固定定位：fixed ， 一定要先给父元素设置相对定位，在给子元素设置绝对定位，粘性定位：sticky，一定要加top等值使用*/
+
+            transform: translate(30px, 30%); /* 移动盒子的位置，其他盒子位置不影响，使用百分比，是依据盒子自身来对比  -50% ，-50% 就是盒子居中*/
+
+            z-index: 1; /* 定位的权重，大的在上，只有定位的盒子才有这个属性 */
+            /*  --------------------------------------   flex 布局  ------------------------------------------------*/
+
+            /*  -----------   flex 父布局  ---------*/
+            display: flex; /* 设置父元素的布局 */
+            flex-direction: row; /* 在父元素设置子元素的布局方式：row左右   column 上下    reverse从下往上 */
+            justify-content: flex-start; /* 主轴属性：flex-start(end)  center(居中)，space-around(平局分配)， between(左右贴边，剩余分配)*/
+            align-items: center; /* 侧轴属性：flex-start(end)  center(居中) */
+            flex-wrap: wrap; /* nowrap 不换行   wrap */
+            align-content: space-around; /* space-between上下贴边， space-around上下距离一样   对多行才有效*/
+
+            /*  -----------   flex 子布局  ---------*/
+            flex: 1; /* 占据位置的分比 */
+            align-self: center; /* 只设置其中一个盒子 */
+
+
+            /*  --------------------------------------   rem 布局  ------------------------------------------------*/
+            @media screen and (max-width: 800px) {
+                /*  媒体查询 可以根据不同的屏幕尺寸改变不同样式  */
+
+            }
+
+
+            /* 反选择器，用来排除元素 */
+
+            :not(div) {
+
+            }
+
+            /* 选择第一个 */
+
+            :first-child {
+
+            }
+
+            /* 选择最后一个 */
+
+            :last-child {
+
+            }
+
+            /* 选择第几个 */
+
+            :nth-child(2) {
+            }
+
+            /* 从第10个开始选择后面的 */
+
+            :nth-child(n + 10) {
+            }
+
+            /* 从第10个开始选择前面的 */
+
+            :nth-child(-n + 10) {
+            }
+
+            /* 组合用法：排除第2个 */
+
+            :not(:nth-child(2)) {
+
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+<script>
+
+    // 优选使用 const 声明，const不可修改类型，但可以添加或删除里面的属性，新增跟删除const类型还是没变
+
+
+    const arr = document.querySelector('ul') // 获取标签 只匹配第一个
+    const arr1 = document.querySelector('ul li:first-child') // 获取某个标签 第一个标签
+    const arr2 = document.querySelectorAll('ul li') // 获取所有标签
+    const arr3 = document.querySelectorAll('.box li') // 获取某个标签下的所有标签
+
+    // 获取文本内容，在赋值新的内容，不识别内容里面的标签
+    arr1.innerText
+
+    // 获取文本内容，再赋值新的内容，可以识别到标签是什么类型
+    arr1.innerHTML = '<strong>实战</strong>'
+
+
+    arr.classList.add('str') // 给class 新增样式 == box str
+    arr.classList.remove('box') // 删除class的一个样式
+    arr.classList.toggle('box1') // 取反，有就删除没有就新增
+    // 做判断时，
+    classList.contains()
+
+
+    const str = document.querySelector('input')
+    // 获取自定义属性 dataset是获取所有 .m是获取某一个
+    str.dataset.m =
+        // 获取输入表单里面的文本或值， innerText只适用于普通文本
+        str.value
+    // 修改输入表单里面的文本，赋值
+    str.value = '你好'
+
+
+    function fn() {
+        //  定时器开启     源代码 setInterval(function (){},1000)
+        console.log('执行一次')
+    }
+
+    // 每隔一秒钟执行一次函数，1000毫秒是一秒
+    let str = setInterval(fn, 1000)
+
+    // 定时器关闭
+    clearInterval(str)
+
+    let timer = setTimeout(function () {
+        //  延迟定时器，5秒后指定这个函数
+    }, 5000)
+
+    clearInterval()
+
+
+    // DOM事件监听
+
+    const but = document.querySelector('button') // removeEventListener 事件解绑
+    // click：鼠标点击事件，mouseenter：鼠标经过，mouseleave：鼠标离开，
+    // focus：获取焦点，blur：失去焦点，keydown：键盘按下，keyup：键盘按下抬起
+    // change：输入框内容发生变化触发事件，
+    // submit：form表单提交事件，把整个表单里面的内容提交，不只是单单提交一个
+    but.addEventListener("click", function () {
+        alert('你好')
+        //  事件解绑
+        but.onclick = null
+    })
+
+
+    // input 检查输入框输入了什么
+    const str = document.querySelector('input')
+    str.addEventListener('input', function (e) {
+        // e.key 可以检测你按了那个键，再去做判断 if（e.key === abc等）
+        if (e.key === 'A') {
+        }
+    })
+
+
+    const str = document.querySelector('input')
+    // e表示这个函数本身，也叫对象 阻止对象事件冒泡 e，stopPropagation
+    // 键盘按下抬起
+    str.addEventListener('keyup', function (e) {
+        e.target.tagName
+        //  判断你按的是不是A这个键盘，是就执行下面的代码
+        if (e.target.tagName === '91') {
+            console.log('只有点击A标签才会执行')
+        }
+    })
+
+
+    const str = document.querySelector('input')
+    // 点击操作
+    str.addEventListener('click', function (e) {
+        e.target.tagName
+        //  判断你点击的是不是li这个标签，是就执行下面的代码
+        if (e.target.tagName === 'LI') {
+            console.log('只有点击li标签才会执行')
+        }
+    })
+
+
+    // window 页面滚动 div或a等,指定的是某个元素滚动
+    window.addEventListener('scroll', function () {
+        //  d.offsetTop 获取某个值的位置
+        document.documentElement.scrollTop = d.offsetTop;
+        //  赋值
+        document.documentElement.scrollTop = '100' + 'px';
+
+    })
+
+
+    window.addEventListener('scroll', function () {
+        //  获取html被卷去了多少
+        const n = document.documentElement.scrollTop
+        if (n >= 1000) {
+            navigation_li_top.style.display = 'block'
+            navigation_ul_top.style.top = '250' + 'px'
+        } else {
+            navigation_li_top.style.display = 'none'
+            navigation_ul_top.style.top = '340' + 'px'
+        }
+
+    })
+
+
+    const data = new Date() // 获取当前时间 获取时间戳 getTime() +new Date() data.now()
+    const data = new Date('2024-5-1 08:30:30') // 获取指定时间
+    console.log(data.getMonth() + 1) // 获取年月日，月都要+1，getDay 是星期 不+1就是星期天
+
+    const d = parseInt(总秒数 / 60 / 60 / 24);
+    const h = parseInt(总秒数 / 60 / 60 % 24);
+    const m = parseInt(总秒数 / 60 % 60);
+    const s = parseInt(总秒数 % 60);
+
+
+    // 查找节点，都是属性的
+    // 子节点查找父节点
+    li.parentNode
+    // 父节点查找子节点，
+    ul.children
+    // 节点查找下一个兄弟节点
+    li.nextElementSibling
+    // 节点查找上一个兄弟节点
+    li.previousElementSibling
+    // 节点查找所以兄弟节点
+    li.parentElement
+
+
+    // 创建父节点
+
+    // 创建一个节点，也就是新元素
+    const div = document.createElement('div')
+    // 创建元素后，放在body标签下，在父元素的末尾添加
+    document.body.appendChild(div)
+
+    // 创建子节点和修改
+
+    // 获取原有ul标签
+    const ul = document.querySelector('ul')
+    // 新建一个li标签
+    const li = document.createElement('li')
+    // 修改节点内容
+    ul.children[2].innerHTML = '你好'
+    // 把 li标签放到ul里面去，appendChild 在末尾添加 insertBefore放在前面
+    ul.appendChild(li)
+    // 放在那个盒子，放在什么元素的前面 1就是放在第二个元素的前面，原来的第1个元素变成第2个
+    ul.insertBefore(ul, li.children[1])
+
+
+    // 删除子节点
+    // 获取原有ul标签
+    const str = document.querySelector('ul')
+    // 获取原有ul标签 ,删除这个标签里面的第二个元素
+    str.removeChild(str.children[1])
+
+
+    // 克隆节点
+    // 获取原有ul标签
+    const ul = document.querySelector('ul')
+    // 选择标签的第几个元素复制 0是第一个1是第二个
+    // 复制一个标签的内容
+    const li = ul.children[0].cloneNode(true)
+    // 复制完成后，放在ul的最后
+    ul.appendChild(li)
+
+    //简便写法
+    ul.appendChild(ul.children[0].cloneNode(true)) //简便写法
+
+
+    // this 和 e的区别
+    // 绑定的是 arr ，this 是绑定的这个事件本身 arr
+    // 点击 a标签，e就是a标签本身
+    // 点击 a标签， this 还是arr ，e就是被点击元素的本身
+    arr.addEventListener('click', function (e) {
+        //  自动跳转新链接
+        location.href = 'https://www.baidu.com/'
+    })
+
+    const li = document.querySelector('li')
+    // 查找li的下一个li标签，查找兄弟，
+    const li1 = ul.nextElementSibling
+    li1.addEventListener("click", function () {
+        // 前进一步
+        history.go(1)
+        // 后退一步
+        history.go(-1)
+    })
+
+
+    // 数据存储
+    // 键，值
+    localStorage.setItem('name', '张三')
+    // 提取数据
+    localStorage.getItem('name')
+    // 删除数据
+    localStorage.removeItem('name')
+    // 改数据，有就修改，没有就新增
+    localStorage.setItem('name', '李四')
+
+    // 多条数据存储，使用对象放置数据，
+    const obj = {
+        name: '张三',
+        age: 18,
+        gender: '男'
+    }
+    // 复杂数据类型不能直接存储，要转换成JSON对象，字符串类型才可以存储
+    localStorage.setItem('obj', JSON.stringify(obj))
+    // 转JSON后，键是字符串类型，不能直接取键里面的值
+    // 先取obj里面的内容，转成对象，然后再取值
+    JSON.parse(localStorage.getItem('obj'))
+
+    // forEach 遍历数组中的每一个元素，但是不返回新数组
+    // 适合用于遍历数组里面的对象
+    const arr = ['张三', '李四', '王五']
+    arr.forEach(function () {
+    })
+
+    // map 遍历数组
+    const arr = ['red', 'blue', 'pink']
+    // map 最大的特点是返回一个新的数组
+    const trArr = arr.map(function (ele, indx) {
+        //   ele数组元素：red,blue,pink   index是索引号： 0，1，,2
+        // 拼接字符串, 数组里面的所有元素都追加上颜色
+        return ele + '颜色'
+    })
+    // 返回的数组是：['red颜色','blue颜色', 'pink颜色']
+    console.log(trArr)
+    // 数组转换成字符串 返回的是 red颜色，blue颜色，pink颜色
+    trArr.join()
+    // 字符串没有逗号隔开，字符串放什么符号就用什么符号隔开
+    trArr.join('')
+
+
+    // 筛选数组,返回筛选瞒住条件的新元素数组
+    const arr = [10, 20, 30]
+    // filter筛选，some：一个元素符合返回true，every：一个元素不符合返回false
+    const newArr = arr.filter(function (item, index) {
+        //  数值使用 filter
+        return item >= 20
+    })
+    console.log(newArr)
+    // 简便写法
+    const newArr = arr.filter(item => item >= 20)
+
+
+    // 众多对象中找出其中一个
+    const arr = [
+        {
+            name: '小米',
+            price: 30000
+        },
+        {
+            name: '小米',
+            price: 30000
+        },
+    ]
+    const newArr = arr.find(function (item) {
+        //  字符串使用 find
+        return item.name === '小米'
+    })
+    console.log(newArr) // 返回的是小米这个对象的全部
+
+    // 函数箭头简便写法
+    const newArr = arr.filter(item => item.name === '小米')
+
+
+    // reduce 求和
+    const arr = [1, 5, 8, 10]
+    const newArr = arr.reduce(function (prev, current) {
+        (function () {
+            const app = new Vue({
+                el: '#arr14',
+                data: {
+                    words: '',
+                    obj: {
+                        wed: ''
+                    }
+                },
+                watch: {
+                    // newValue 新值，监控到你输入的最新值
+                    // words(newValue){
+                    //     console.log('新值',newValue)
+                    // }
+
+
+                    // newValue 新值，监控到你输入的最新值
+                    'obj.wed'(newValue) {
+                        console.log('新值', newValue)
+                    }
+
+                },
+
+            })
+        })();
+        return prev + current
+    }, 10)
+    console.log(newArr) // 等于24，把这几个数的合相加
+
+    // 箭头函数写法 累加数，，当前数 10 + 1 11 + 5
+    const str = arr.reduce((prev, current) => prev + current, 10)
+    console.log(str) // 等于24，把这几个数的合相加
+
+
+    // 构造函数 公共的属性写到构造函数里面
+    function Pig(name, age) {
+        this.uname = name
+        this.age = age
+        // prototype原型是构造函数的一个属性
+        // 公共方法写到原型对象
+        Pig.prototype.sing = function () {
+            console.log('都会唱歌')
+        }
+    }
+
+    const arr = new Pig('张三', 18)
+    const str = new Pig('李四', 25)
+    console.log(arr.sing === str.sing) // 反回true
+
+    // 原型是构造函数的一个属性
+
+
+    // 把字符串转 数组 join是相反的
+    const arr = 'pink,red'
+    const arr = '2022-4-8'
+    // 分割符号是什么
+    const str = arr.split(',')
+    const str = arr.split('-')
+
+    // 拷贝函数
+    const arr = {
+        name: '张三',
+        age: 18
+    }
+    // 浅拷贝一份对象，只拷贝外面的元素对象，嵌套对象还是拷贝地址
+    const str = {...arr}
+    // 这里重新赋值的元素不会影响到上面的函数
+    str.age = 20
+    console.log(str)
+
+
+    // 深拷贝
+    const arr = {
+        name: '张三',
+        age: 18
+        hobby: ['篮球', '羽毛球']
+    }
+
+    function deeCopy(str, arr) {
+        for (let k in arr) {
+            //  k 是属性名   arr[k]是属性值
+            // str[k] === str.name
+            // 判断属性值是不是数组
+            if (arr[k] instanceof Array) {
+                // 旧对象属性值是数组，那么新的对象就创建一个新的数组
+                str[k] = []
+                deeCopy(str[k], arr[k])
+            } else {
+                str[k] = arr[k]
+            }
+        }
+    }
+
+    // 函数调用， arr是旧函数.str是新的
+    deeCopy(str, arr)
+    // 修改新的对象数组，不影响旧的
+    str.hobby[0] = '乒乓球'
+
+
+</script>
+</body>
+</html>
