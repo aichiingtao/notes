@@ -1,0 +1,62 @@
+/* 重置所有元素的内外边距为 0 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 重置 body 的默认样式 */
+body {
+  font-family: Arial, sans-serif; /* 设置默认字体 */
+  font-size: 16px; /* 设置默认字体大小 */
+  line-height: 1.5; /* 设置行高 */
+  color: #333; /* 设置默认文本颜色 */
+  background-color: #fff; /* 设置默认背景颜色 */
+}
+
+/* 重置列表样式，去除列表默认的项目符号 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 重置链接样式，去除默认的下划线，并设置默认颜色 */
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 重置图片样式，去除默认的边框，并使其适应容器 */
+img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  vertical-align: middle;
+}
+
+/* 重置表格样式，合并边框，去除边框间距 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 重置表单元素样式 */
+input,
+textarea,
+select {
+  font-family: inherit; /* 继承 body 的字体 */
+  font-size: inherit;
+  line-height: inherit;
+  outline: none; /* 去除默认的轮廓线 */
+}
+
+/* 去除 button 的默认样式 */
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
