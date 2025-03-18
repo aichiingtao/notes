@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const httpIndex = axios.create({
-  baseURL: 'https://www.dedao.cn/pc/ddlive/v2/pc/home/live',
+  baseURL: 'http://www.dedao.cn/pc',
   timeout: 5000,
 })
 

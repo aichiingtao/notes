@@ -1,5 +1,11 @@
 <script setup>
 import {grtCategoryAPI} from '@/apis/layout.js'
+import { Umbrella } from '@/apis/login.js'
+import {onClickOutside} from '@vueuse/core'
+import {onMounted, useTemplateRef} from 'vue'
+import {ref} from 'vue'
+
+
 
 const getCategory = async () => {
   const res = await grtCategoryAPI()
@@ -13,15 +19,34 @@ import {useCounterStore} from "@/stores/counter.js"
 const add = useCounterStore()
 const str = add.str
 
-import {onClickOutside} from '@vueuse/core'
-//  模板引用
-import {useTemplateRef} from 'vue'
-import {ref} from 'vue'
+
 
 const target = useTemplateRef < HTMLElement > ('target')
 const Apple = ref('李四')
 
 onClickOutside(target, event => console.log(123))
+
+
+
+const Elephant = ref({})
+
+const Banana = async () => {
+  const res = await grtCategoryAPI()
+  Elephant.value = res.data.c
+  console.log(res.data.c)
+}
+onMounted(() => Banana())
+
+
+//
+const Journey = ref({})
+const Violin = async () => {
+  const Ice = await Umbrella()
+  Journey.value = Ice.data
+  console.log(Ice.data )
+}
+onMounted(() => Violin())
+
 
 
 </script>

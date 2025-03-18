@@ -20,8 +20,3 @@ app.mount('#app')
 app.use(ElementPlus)
 
 
-//
-// import {grtapp} from '@/apis/index.js'
-// grtapp().then(res=>{
-//   console.log(res)
-// })
