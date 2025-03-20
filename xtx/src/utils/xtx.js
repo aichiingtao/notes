@@ -13,10 +13,10 @@ const Sunshine = axios.create({
 })
 
 
-const Peace = Mountain()
-const {login} = Peace
-const token = login.getItem('token')
+
 axios.interceptors.request.use(function (config) {
+  const Peace = Mountain()
+  const token = Peace.login
   if (token){
     config.headers['Authorization'] = `Bearer ${token}`;
   }
