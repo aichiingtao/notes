@@ -5,6 +5,8 @@ import {onClickOutside} from '@vueuse/core'
 import {onMounted, useTemplateRef} from 'vue'
 import {ref} from 'vue'
 import {Zebra} from '@/apis/page.js'
+import {useUserStore} from  '@/stores/user.js'
+const userStore = useUserStore()
 
 
 
@@ -50,7 +52,6 @@ const Xylophone = async () =>{
 onMounted(() => Xylophone())
 
 
-//
 const Journey = ref({})
 const Violin = async () => {
   const Ice = await Umbrella()
@@ -59,6 +60,20 @@ const Violin = async () => {
 }
 onMounted(() => Violin())
 const Adventure = defineModel()
+
+
+
+// 退出操作
+import {useRouter} from "vue-router";
+const router = useRouter()
+const confirmEvent = () => {
+  //  调用清楚用户信息函数
+  userStore.quitLogin()
+
+  //跳转登录页面
+  router.replace({path:'/login'})
+}
+
 
 
 
@@ -77,19 +92,29 @@ const Adventure = defineModel()
   <body>
   <!-- 顶部导航条 -->
   <div class="top-nav">
-    <div class="container"  v-if="true">
+    <div class="container" v-if="userStore.userInfo.token">
       <ul class="top-nav-links">
-        <li><a href="#" @click="$router.push('/login')">请先登录</a> |</li>
-        <li><a href="#">免费注册</a> |</li>
         <li><a href="#">我的订单</a> |</li>
         <li><a href="#">会员中心</a> |</li>
         <li><a href="#">帮助中心</a> |</li>
         <li><a href="#">关于我们</a> |</li>
-        <li><a href="#">手机版</a></li>
+        <el-popconfirm
+          confirm-button-text="确认"
+          cancel-button-text="取消"
+          title="确认要退出吗?"
+          @confirm="confirmEvent"
+        >
+
+          <template #reference>
+            <el-button>退出登录</el-button>
+          </template>
+
+        </el-popconfirm>
       </ul>
     </div>
     <div class="container" v-else>
       <ul class="top-nav-links">
+        <li><a href="#" @click="$router.push('/login')">请先登录</a> |</li>
         <li><a href="#">我的订单</a> |</li>
         <li><a href="#">会员中心</a> |</li>
         <li><a href="#">帮助中心</a> |</li>

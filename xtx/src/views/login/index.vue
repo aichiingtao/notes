@@ -1,10 +1,11 @@
 <script setup>
-import {Umbrella} from '@/apis/login.js'
 import {ref} from 'vue'
 import {ElForm, ElInput, ElCheckbox, ElButton,ElMessage} from 'element-plus';
 import 'element-plus/es/components/message/style/css'
 //  调用router 方法  useRoute是调数据
 import {useRouter} from 'vue-router'
+import {useUserStore} from '@/stores/user.js'
+const userStore = useUserStore()
 
 
 const form = ref({
@@ -46,9 +47,7 @@ const doLogin = () => {
   formRef.value.validate(async (valid) => {
     // valid 所有的表单都通过校验，它才能位 true
     if (valid) {
-      //  发送请求接口时，传递的参数
-      const res = await Umbrella({account, password})
-      console.log(res)
+      await userStore.getUserInfo({account, password})
       // 提示用户登录成功
       ElMessage({type:'success',message:'登录成功'})
       // 跳转首页
@@ -65,6 +64,7 @@ const doLogin = () => {
     <div class="login-card">
       <div class="login-tabs">
         <div class="active-tab">账户登录</div>
+        <div class="active-tab" @click="$router.push('/')">不登录预览</div>
       </div>
       <el-form :model="form" :rules="rules" ref="formRef">
         <el-form-item prop="account" style="margin-bottom: 20px;">
