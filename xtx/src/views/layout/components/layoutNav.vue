@@ -95,15 +95,15 @@ const confirmEvent = () => {
     <div class="container" v-if="userStore.userInfo.token">
       <ul class="top-nav-links">
         <li><a href="#">我的订单</a> |</li>
-        <li><a href="#">会员中心</a> |</li>
+        <li><a href="#" @click="$router.push('/Product')">商品详情</a> |</li>
         <li><a href="#">帮助中心</a> |</li>
         <li><a href="#">关于我们</a> |</li>
+
         <el-popconfirm
           confirm-button-text="确认"
           cancel-button-text="取消"
           title="确认要退出吗?"
-          @confirm="confirmEvent"
-        >
+          @confirm="confirmEvent">
 
           <template #reference>
             <el-button>退出登录</el-button>

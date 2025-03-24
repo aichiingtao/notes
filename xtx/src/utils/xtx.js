@@ -38,8 +38,6 @@ axios.interceptors.response.use(function (response) {
     message: 'Congrats, this is a success message.'
   })
   return response;
-}, function (error) {
-  return Promise.reject(error);
 });
 
 export default Sunshine
