@@ -1,6 +1,8 @@
 <script setup>
 import {ElInputNumber} from 'element-plus'
 import {ref, onMounted} from 'vue'
+import {uesCartStore} from '@/stores/CartStore.js'
+const CartStore = uesCartStore()
 
 const count = ref(1)
 const countChange = () => {
@@ -11,20 +13,24 @@ const countChange = () => {
 import {Product} from '@/apis/Product.js'
 
 const productList = ref({})
+
 const getProduct = async () => {
   const res = await Product()
   productList.value = res.data.result
-  console.log(res.data.result)
-  console.log(res.data.result.specs[1].values)
+  // console.log(res.data)
+  // console.log(res.data.result.specs[1].values)
 }
-// const valuesArray = computed(() => productList.value.specs[1].values)
-// console.log(valuesArray)
+console.log(productList)
 
 onMounted(() => getProduct())
 
 const addCart = () => {
-
+  CartStore.addCart({
+      id:productList.id
+  })
 }
+
+
 
 </script>
 
@@ -47,7 +53,7 @@ const addCart = () => {
     <div class="product-info">
       <div class="product-title">{{ productList.name }}</div>
       <div class="product-price">{{ productList.oldPrice }}<span
-        class="product-old-price">￥200.00</span></div>
+        class="product-old-price">{{ productList.id }}</span></div>
       <div class="product-options">
         <div class="size-options">
           <button>{{ 45 }}</button>
