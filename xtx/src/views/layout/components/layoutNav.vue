@@ -6,6 +6,8 @@ import {onMounted, useTemplateRef} from 'vue'
 import {ref} from 'vue'
 import {Zebra} from '@/apis/page.js'
 import {useUserStore} from  '@/stores/user.js'
+import {uesCartStore} from '@/stores/CartStore.js'
+const CartStore = uesCartStore()
 const userStore = useUserStore()
 
 
@@ -36,7 +38,6 @@ const Elephant = ref({})
 const Banana = async () => {
   const res = await grtCategoryAPI()
   Elephant.value = res.data.c
-  console.log(res.data.c)
 }
 onMounted(() => Banana())
 
@@ -75,6 +76,8 @@ const confirmEvent = () => {
 }
 
 
+// 获取购物车的商品数量
+const Yacht = CartStore.cartList.length
 
 
 </script>
@@ -114,7 +117,7 @@ const confirmEvent = () => {
     </div>
     <div class="container" v-else>
       <ul class="top-nav-links">
-        <li><a href="#" @click="$router.push('/login')">请先登录</a> |</li>
+        <li><a href="#" @click="router.push('/login')">请先登录</a> |</li>
         <li><a href="#">我的订单</a> |</li>
         <li><a href="#">会员中心</a> |</li>
         <li><a href="#">帮助中心</a> |</li>
@@ -144,7 +147,7 @@ const confirmEvent = () => {
       </ul>
       <div class="search-cart">
         <input type="text" placeholder="搜一搜" v-model="Adventure">
-        <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
+        <a href="#" class="cart-icon" @click="router.push('/Csrt')">🛒<span class="cart-count">{{ Yacht }}</span></a>
       </div>
       <div>
         {{ Adventure }}

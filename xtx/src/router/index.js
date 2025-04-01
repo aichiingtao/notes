@@ -4,6 +4,7 @@ import layout from "@/views/layout/index.vue"
 import home from "@/views/home/index.vue"
 import category from "@/views/category/index.vue"
 import Product from '@/views/Product/index.vue'
+import Csrt from '@/views//layout/components/layoutCsrt.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,12 +24,15 @@ const router = createRouter({
           component:category,
         },
 
+
       ]
     },
     // 登录页面
     {path:'/login',component:login},
     // 商品详情
     {path:'/Product',component:Product},
+    //  购物车
+    {path:'/Csrt',component:Csrt},
   ],
 })
 

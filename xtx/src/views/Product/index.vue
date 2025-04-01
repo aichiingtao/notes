@@ -1,8 +1,13 @@
 <script setup>
-import {ElInputNumber} from 'element-plus'
+import {ElInputNumber, ElMessage} from 'element-plus'
 import {ref, onMounted} from 'vue'
 import {uesCartStore} from '@/stores/CartStore.js'
+
 const CartStore = uesCartStore()
+
+// 获取购物车商品数量
+const Yacht = CartStore.cartList.length
+
 
 const count = ref(1)
 const countChange = () => {
@@ -17,24 +22,32 @@ const productList = ref({})
 const getProduct = async () => {
   const res = await Product()
   productList.value = res.data.result
-  // console.log(res.data)
-  // console.log(res.data.result.specs[1].values)
 }
-console.log(productList)
 
 onMounted(() => getProduct())
 
 const addCart = () => {
   CartStore.addCart({
-      id:productList.id
-  })
+    id: productList.value.id,
+    name: productList.value.name,
+    oldPrice: productList.value.oldPrice,
+    img:'https://yanxuan-item.nosdn.127.net/feec7bde4d52521ae70ab4c5010ce992.png',
+    count:count.value,
+
+  },
+    ElMessage({
+      message:'添加成功',
+      type: 'success'
+    })
+  )
 }
-
-
 
 </script>
 
 <template>
+  <div class="box1">
+    <a href="#" class="cart-icon" @click="$router.push('/Csrt')">🛒<span class="cart-count">{{ Yacht }}</span></a>
+  </div>
   <div class="product-container">
     <div class="product-main">
       <img src="https://yanxuan-item.nosdn.127.net/feec7bde4d52521ae70ab4c5010ce992.png" alt="主图">
@@ -60,7 +73,7 @@ const addCart = () => {
         </div>
         <el-input-number v-model="count" @change="countChange"/>
         <div>
-          <button class="buy-button" @click="addCart">加入购物车</button>
+          <el-button class="buy-button" @click="addCart" :plain="true" >加入购物车</el-button>
         </div>
       </div>
     </div>
@@ -72,6 +85,14 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   padding: 20px;
+}
+.box1{
+  width: 100px;
+  height: 100px;
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-container {
