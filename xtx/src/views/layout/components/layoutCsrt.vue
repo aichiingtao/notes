@@ -5,10 +5,7 @@ import {Delete} from '@element-plus/icons-vue'
 import {ElInputNumber} from 'element-plus'
 
 
-const del = (id) => {
-  const item = CartStore.cartList.find(item => item.id !== id)
-  CartStore.value = item
-}
+
 </script>
 
 <template>
@@ -19,7 +16,7 @@ const del = (id) => {
       <p>{{ item.oldPrice }}</p>
       <el-input-number v-model="item.count" @change="handleChange"/>
       <br>
-      <el-button type="danger" :icon="Delete" circle @click="del(item.id)"/>
+      <el-button type="danger" :icon="Delete" circle @click="CartStore.del(item.id)"/>
     </div>
 
   </div>

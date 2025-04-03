@@ -45,9 +45,6 @@ const addCart = () => {
 </script>
 
 <template>
-  <div class="box1">
-    <a href="#" class="cart-icon" @click="$router.push('/Csrt')">🛒<span class="cart-count">{{ Yacht }}</span></a>
-  </div>
   <div class="product-container">
     <div class="product-main">
       <img src="https://yanxuan-item.nosdn.127.net/feec7bde4d52521ae70ab4c5010ce992.png" alt="主图">
@@ -85,14 +82,6 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   padding: 20px;
-}
-.box1{
-  width: 100px;
-  height: 100px;
-  margin-right: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .product-container {

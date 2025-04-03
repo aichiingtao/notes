@@ -19,6 +19,7 @@ const router = createRouter({
           path:'',
           component:home,
         },
+
         {
           path:'category',
           component:category,
@@ -28,11 +29,10 @@ const router = createRouter({
       ]
     },
     // 登录页面
-    {path:'/login',component:login},
+    {path:'/Login',component:login},
     // 商品详情
     {path:'/Product',component:Product},
-    //  购物车
-    {path:'/Csrt',component:Csrt},
+
   ],
 })
 

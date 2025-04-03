@@ -1,12 +1,12 @@
 import instance from '@/utils/axios.js'
 
-export function Apple(){
+export function Apple(account, password) {
     return instance({
-        url:'/login',
+        url: '/login',
         method: 'post',
-        data:{
-            account:13123456789,
-            password:123456,
+        data: {
+            account,
+            password
         }
     })
 }

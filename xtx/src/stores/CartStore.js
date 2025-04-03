@@ -15,7 +15,10 @@ export const uesCartStore = defineStore('Cart',() => {
 
   }
 
-  const del = () => {
+  const del = (id) => {
+    const idx = cartList.value.findIndex(item => id !== item.id)
+    //  splice 删除元素，
+    cartList.value.splice(idx,1)
 
   }
 
@@ -23,6 +26,7 @@ export const uesCartStore = defineStore('Cart',() => {
   return{
     cartList,
     addCart,
+    del,
   }
 },
   {

@@ -1,15 +1,15 @@
 <script setup>
 import {grtCategoryAPI} from '@/apis/layout.js'
-import { Umbrella } from '@/apis/login.js'
+import {Umbrella} from '@/apis/login.js'
 import {onClickOutside} from '@vueuse/core'
 import {onMounted, useTemplateRef} from 'vue'
 import {ref} from 'vue'
 import {Zebra} from '@/apis/page.js'
-import {useUserStore} from  '@/stores/user.js'
+import {useUserStore} from '@/stores/user.js'
 import {uesCartStore} from '@/stores/CartStore.js'
+
 const CartStore = uesCartStore()
 const userStore = useUserStore()
-
 
 
 const getCategory = async () => {
@@ -25,12 +25,10 @@ const add = useCounterStore()
 const str = add.str
 
 
-
 const target = useTemplateRef < HTMLElement > ('target')
 const Apple = ref('李四')
 
 onClickOutside(target, event => console.log(123))
-
 
 
 const Elephant = ref({})
@@ -42,10 +40,9 @@ const Banana = async () => {
 onMounted(() => Banana())
 
 
-
 const Watermelon = ref({})
 
-const Xylophone = async () =>{
+const Xylophone = async () => {
   const Yacht = await Zebra()
   Watermelon.value = Yacht.data
   console.log(Yacht.data)
@@ -57,22 +54,22 @@ const Journey = ref({})
 const Violin = async () => {
   const Ice = await Umbrella()
   Journey.value = Ice.data
-  console.log(Ice.data )
+  console.log(Ice.data)
 }
 onMounted(() => Violin())
 const Adventure = defineModel()
 
 
-
 // 退出操作
 import {useRouter} from "vue-router";
+
 const router = useRouter()
 const confirmEvent = () => {
   //  调用清楚用户信息函数
   userStore.quitLogin()
 
   //跳转登录页面
-  router.replace({path:'/login'})
+  router.replace({path: '/Login'})
 }
 
 
@@ -117,7 +114,7 @@ const Yacht = CartStore.cartList.length
     </div>
     <div class="container" v-else>
       <ul class="top-nav-links">
-        <li><a href="#" @click="router.push('/login')">请先登录</a> |</li>
+        <li><a href="#" @click="router.push('/Login')">请先登录</a> |</li>
         <li><a href="#">我的订单</a> |</li>
         <li><a href="#">会员中心</a> |</li>
         <li><a href="#">帮助中心</a> |</li>
@@ -147,7 +144,8 @@ const Yacht = CartStore.cartList.length
       </ul>
       <div class="search-cart">
         <input type="text" placeholder="搜一搜" v-model="Adventure">
-        <a href="#" class="cart-icon" @click="router.push('/Csrt')">🛒<span class="cart-count">{{ Yacht }}</span></a>
+        <a href="#" class="cart-icon" @click="router.push('/Csrt')">🛒<span
+          class="cart-count">{{ Yacht }}</span></a>
       </div>
       <div>
         {{ Adventure }}
@@ -164,7 +162,6 @@ const Yacht = CartStore.cartList.length
       </div>
     </div>
   </div>
-
   </body>
 
   </html>
