@@ -7,27 +7,21 @@ import {useRouter} from 'vue-router'
 
 const router = useRouter()
 
-
+// 登录数据
 const form = reactive({
   password: '',
   account: '',
   checked: false,
 })
 
-
+// 校验登录
 const rules = {
-  account: [{
-    // 是否必填
-    required: true,
-    //  提示语
-    message: '请输入正确手机号',
-    //  校验格式规则
-    pattern: /^1\d{10}$/,
-    trigger: 'blur',
-  }],
+  // 是否必填， 错误提示，验证格式，失去焦点即验证
+  account: [{required: true, message: '请输入正确手机号', pattern: /^1\d{10}$/, trigger: 'blur',}],
+
   password: [
-    {required: true, message: '密码不能为空',trigger: 'blur' },// 失去焦点是验证
-    {min: 6, max: 8, message: '密码6-8位',trigger: 'change'},// 输入时校验长度
+    {required: true, message: '密码不能为空', trigger: 'blur'},// 失去焦点时验证
+    {min: 6, max: 8, message: '密码6-8位', trigger: 'change'},// 输入时校验长度
   ],
 
 
@@ -36,74 +30,159 @@ const rules = {
     validator: (rule, value, callback) => {
       // 表单的值： checked: true,
       if (value) {
-        //  通知验证结果，
-        callback()
+        callback() //  返回验证结果通知
       } else {
-        callback(new
-            //  消息提示
-            ElMessage({
-              message: '请勾选协议',
-              type: 'success',
-            })
-        )
+        callback(new Error('请勾选协议'))
       }
-
     }
   }],
 }
 
+//  与form表单绑定，可以取出 rules 的校验结果，只要一个不通过，就会输出false
+const formRef = ref(null)
+
+// 登录
 const login = () => {
-  const {account, password} = form.valueOf()
-  if (rules) {
+  const {account, password} = form
+  //  validate：校验数据是否校验通过
+  formRef.value.validate((valid) => {
+    if (valid) {
+      Apple(account, password)
+      // 登录消息提示
+      ElMessage({type: 'success', message: '登录成功'})
+      //  跳转登录页面
+      router.replace('/')
 
-    Apple(account, password)
+    } else {
+      //  提示简写
+      ElMessage.error('登录失败')
+    }
+  })
 
-    // 登录消息提示
-    ElMessage({type: 'success', message: '登录成功'})
-
-    //  跳转登录页面
-    router.push('/')
-
-  }
 }
+
+
+const register = ref(false)
+const addlogin = () => {
+  register.value = true
+}
+const addlogin1 = () => {
+  register.value = false
+
+}
+
+const Banana = reactive({
+  account: '',
+  password: '',
+  password1: '',
+  Verification: '',
+  Graphical: '',
+  Elephant: [855, 99, 86, 55],
+  select: '86',
+})
+
+const yzm = ref()
+const txyzm = ref()
+
+const rules1 = [
+  {
+    account: [{
+      reactive: true,
+      message: '请输入正确手机号',
+      trigger: 'blur',
+      // 校验手机号格式
+      pattern: /^1\d{10}$/,
+    }],
+    password: [{
+      reactive: true,
+      message: '密码必须包含数字和字母',
+      trigger: 'blue',
+      pattern: /[A-Za-z\d]+/,
+    },
+      {
+        min: 6,
+        max: 8,
+        trigger: 'blue',
+        message: '密码6-8位',
+      },
+    ],
+    password1:[{
+
+    }
+    ]
+  }
+]
+const Flower = ref(null)
 
 
 </script>
 
 <template>
-
-
   <div class="layoutLogin">
-    <h3>登录</h3>
-    <el-form :model="form">
-      <el-form-item :rules="rules">
-        <el-input
-            v-model="form.account"
-            style="width: 240px"
-            placeholder="请输入账号"
-        />
-      </el-form-item>
-      <el-form-item :rules="rules">
-        <el-input
-            v-model="form.password"
-            style="width: 240px"
-            type="password"
-            placeholder="请输入密码"
-            show-password
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-checkbox v-model="form.checked" label="条款与协议" size="large"/>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="login">
-          登录
-        </el-button>
-      </el-form-item>
+    <div class="boxlogin">
+      <h3 @click="addlogin ">登录</h3>
+      <h3 @click="addlogin1">注册</h3>
+    </div>
 
-    </el-form>
+    <div v-if=" register ">
+      <el-form :model="form" ref="formRef" :rules="rules">
+        <el-form-item prop="account">
+          <el-input
+              v-model="form.account"
+              style="width: 240px"
+              placeholder="请输入账号"
+          />
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input
+              v-model="form.password"
+              style="width: 240px"
+              type="password"
+              placeholder="请输入密码"
+              show-password
+          />
+        </el-form-item>
+        <el-form-item prop="checked">
+          <el-checkbox v-model="form.checked" label="条款与协议" size="large"/>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="login">
+            登录
+          </el-button>
+        </el-form-item>
+
+      </el-form>
+    </div>
+
+    <div v-else>
+      <el-form-item>
+
+      </el-form-item>
+      <el-form :model="Banana" :rules="rules1" :ref="Flower">
+        <el-form-item prop="account">
+          <el-select v-model="Banana.select" :placeholder="Banana.select" style="width: 80px">
+            <el-option :label=" '+' + item" v-for="item in Banana.Elephant" :key="item" :value="item"/>
+          </el-select>
+          <el-input v-model="Banana.account" style="width: 240px" placeholder="手机号"/>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input type="password" v-model="Banana.password" style="width: 240px" placeholder="密码"/>
+        </el-form-item>
+        <el-form-item prop="password1">
+          <el-input type="password" v-model="Banana.password1" style="width: 240px" placeholder="确认密码"/>
+        </el-form-item>
+        <el-form-item prop="Verification">
+          <el-input v-model="Banana.Verification" style="width: 120px" placeholder="验证码"/>
+          <el-button>获取验证码</el-button>
+        </el-form-item>
+        <el-form-item prop="Graphical">
+          <el-input v-model="Banana.Graphical" style="width: 120px" placeholder="图形验证码"/>
+        </el-form-item>
+      </el-form>
+    </div>
 
   </div>
+
 
 </template>
 
@@ -114,6 +193,14 @@ const login = () => {
   width: 300px;
   height: 200px;
   align-items: center;
+}
+
+.boxlogin {
+  display: flex;
+
+  h3 {
+    margin-right: 30px;
+  }
 }
 
 </style>
