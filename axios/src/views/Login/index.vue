@@ -81,37 +81,46 @@ const Banana = reactive({
   select: '86',
 })
 
-const yzm = ref()
-const txyzm = ref()
 
-const rules1 = [
-  {
-    account: [{
-      reactive: true,
-      message: '请输入正确手机号',
-      trigger: 'blur',
-      // 校验手机号格式
-      pattern: /^1\d{10}$/,
-    }],
-    password: [{
-      reactive: true,
-      message: '密码必须包含数字和字母',
+const rules1 = {
+  account: [{
+    reactive: true,
+    message: '请输入正确手机号',
+    trigger: 'blur',
+    // 校验手机号格式
+    pattern: /^1\d{10}$/,
+  }],
+  password: [{
+    reactive: true,
+    message: '请输入密码',
+    trigger: 'blue',
+
+  },{
+    reactive: true,
+    message: '密码必须包含数字和字母\'',
+    trigger: 'blue',
+    pattern: /[A-Za-z\d]+/,
+  },
+    {
+      min: 6,
+      max: 8,
       trigger: 'blue',
-      pattern: /[A-Za-z\d]+/,
+      message: '密码长度6-8位',
     },
-      {
-        min: 6,
-        max: 8,
-        trigger: 'blue',
-        message: '密码6-8位',
-      },
-    ],
-    password1:[{
+  ],
+  // password1:[{
+  //   validate: (rule, value, callback) => {
+  //     if (value === Banana.password){
+  //       callback()
+  //   }
+  //     else {
+  //       callback(new ElMessage.error('两次密码不一致'))
+  //     }
+  //   }
+  // }]
 
-    }
-    ]
-  }
-]
+
+}
 const Flower = ref(null)
 
 
@@ -155,27 +164,24 @@ const Flower = ref(null)
     </div>
 
     <div v-else>
-      <el-form-item>
-
-      </el-form-item>
-      <el-form :model="Banana" :rules="rules1" :ref="Flower">
-        <el-form-item prop="account">
+      <el-form :model="Banana" :rules="rules1" ref="Flower">
+        <el-form-item prop="Banana.account">
           <el-select v-model="Banana.select" :placeholder="Banana.select" style="width: 80px">
             <el-option :label=" '+' + item" v-for="item in Banana.Elephant" :key="item" :value="item"/>
           </el-select>
           <el-input v-model="Banana.account" style="width: 240px" placeholder="手机号"/>
         </el-form-item>
-        <el-form-item prop="password">
+        <el-form-item prop="Banana.password">
           <el-input type="password" v-model="Banana.password" style="width: 240px" placeholder="密码"/>
         </el-form-item>
-        <el-form-item prop="password1">
+        <el-form-item prop="Banana.password1">
           <el-input type="password" v-model="Banana.password1" style="width: 240px" placeholder="确认密码"/>
         </el-form-item>
-        <el-form-item prop="Verification">
+        <el-form-item prop="Banana.Verification">
           <el-input v-model="Banana.Verification" style="width: 120px" placeholder="验证码"/>
           <el-button>获取验证码</el-button>
         </el-form-item>
-        <el-form-item prop="Graphical">
+        <el-form-item prop="Banana.Graphical">
           <el-input v-model="Banana.Graphical" style="width: 120px" placeholder="图形验证码"/>
         </el-form-item>
       </el-form>
