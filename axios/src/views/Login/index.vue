@@ -84,44 +84,68 @@ const Banana = reactive({
 
 const rules1 = {
   account: [{
-    reactive: true,
+    required: true,
     message: '请输入正确手机号',
     trigger: 'blur',
     // 校验手机号格式
     pattern: /^1\d{10}$/,
   }],
   password: [{
-    reactive: true,
+    required: true,
     message: '请输入密码',
-    trigger: 'blue',
+    trigger: 'blur',
 
-  },{
-    reactive: true,
-    message: '密码必须包含数字和字母\'',
-    trigger: 'blue',
-    pattern: /[A-Za-z\d]+/,
+  }, {
+    required: true,
+    message: '密码必须包含数字和字母',
+    trigger: 'blur',
+    pattern: /^(?=.*[A-Za-z])(?=.*\d).+$/,
   },
     {
       min: 6,
       max: 8,
-      trigger: 'blue',
+      trigger: 'blur',
       message: '密码长度6-8位',
     },
   ],
-  // password1:[{
-  //   validate: (rule, value, callback) => {
-  //     if (value === Banana.password){
-  //       callback()
-  //   }
-  //     else {
-  //       callback(new ElMessage.error('两次密码不一致'))
-  //     }
-  //   }
-  // }]
+  password1: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '请再次输入密码',
+    },
+
+    {
+      validator: (rule, value, callback) => {
+        if (value === Banana.password) {
+          callback()
+        } else {
+          callback(new Error('两次密码不一致'))
+        }
+      },
+      trigger: 'blur'
+    }]
 
 
 }
 const Flower = ref(null)
+
+const addVerification = () => {
+
+}
+
+const Register = () => {
+  Flower.value.validate((valid) => {
+    if (valid){
+      // 注册接口
+      ElMessage.success('注册成功')
+
+    }else {
+      ElMessage.error('注册失败')
+    }
+  })
+
+}
 
 
 </script>
@@ -165,26 +189,29 @@ const Flower = ref(null)
 
     <div v-else>
       <el-form :model="Banana" :rules="rules1" ref="Flower">
-        <el-form-item prop="Banana.account">
+        <el-form-item prop="account">
           <el-select v-model="Banana.select" :placeholder="Banana.select" style="width: 80px">
             <el-option :label=" '+' + item" v-for="item in Banana.Elephant" :key="item" :value="item"/>
           </el-select>
           <el-input v-model="Banana.account" style="width: 240px" placeholder="手机号"/>
         </el-form-item>
-        <el-form-item prop="Banana.password">
-          <el-input type="password" v-model="Banana.password" style="width: 240px" placeholder="密码"/>
+        <el-form-item prop="password">
+          <el-input type="password" v-model="Banana.password" style="width: 240px" placeholder="密码" show-password />
         </el-form-item>
-        <el-form-item prop="Banana.password1">
-          <el-input type="password" v-model="Banana.password1" style="width: 240px" placeholder="确认密码"/>
+        <el-form-item prop="password1">
+          <el-input type="password" v-model="Banana.password1" style="width: 240px" placeholder="确认密码" show-password />
         </el-form-item>
         <el-form-item prop="Banana.Verification">
           <el-input v-model="Banana.Verification" style="width: 120px" placeholder="验证码"/>
-          <el-button>获取验证码</el-button>
+          <el-button @click="addVerification">获取验证码</el-button>
         </el-form-item>
-        <el-form-item prop="Banana.Graphical">
+        <el-form-item prop="Graphical">
           <el-input v-model="Banana.Graphical" style="width: 120px" placeholder="图形验证码"/>
         </el-form-item>
       </el-form>
+      <el-form-item>
+        <el-button @click="Register">注册</el-button>
+      </el-form-item>
     </div>
 
   </div>
